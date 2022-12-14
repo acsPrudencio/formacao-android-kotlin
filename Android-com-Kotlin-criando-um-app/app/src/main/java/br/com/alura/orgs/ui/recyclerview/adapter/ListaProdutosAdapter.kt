@@ -11,18 +11,20 @@ import br.com.alura.orgs.model.Produto
 
 class ListaProdutosAdapter(
     private val context: Context,
-    private val produtos: List<Produto>
+    produtos: List<Produto>
 ) : RecyclerView.Adapter<ListaProdutosAdapter.ViewHolder>() {
+
+    private val produtos = produtos.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(produto: Produto) {
-            var nome = itemView.findViewById<TextView>(R.id.nome)
+            var nome = itemView.findViewById<TextView>(R.id.produto_item_nome)
             nome.text = produto.nome
 
-            var descicao = itemView.findViewById<TextView>(R.id.descricao)
+            var descicao = itemView.findViewById<TextView>(R.id.produto_item_descricao)
             descicao.text = produto.descricao
 
-            var valor = itemView.findViewById<TextView>(R.id.valor)
+            var valor = itemView.findViewById<TextView>(R.id.produto_item_valor)
             valor.text = produto.valor.toPlainString()
         }
     }
@@ -40,6 +42,12 @@ class ListaProdutosAdapter(
 
     override fun getItemCount(): Int {
         return produtos.size
+    }
+
+    fun atualizarTela(produtos: List<Produto>) {
+        this.produtos.clear()
+        this.produtos.addAll(produtos)
+        notifyDataSetChanged()
     }
 
 }

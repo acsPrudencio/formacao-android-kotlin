@@ -6,14 +6,14 @@ import java.util.Objects
 class ProdutoDao {
 
 
-    fun adicionarProduto(produto: Produto){
-        if (Objects.nonNull(produto)){
+    fun adicionarProduto(produto: Produto) {
+        if (Objects.nonNull(produto)) {
             Companion.produtos.add(produto)
         }
     }
 
 
-    fun buscarProdutos() : List<Produto>{
+    fun buscarProdutos(): List<Produto> {
         return Companion.produtos.toList()
     }
 
